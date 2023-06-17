@@ -2,10 +2,15 @@ import Head from 'next/head'
 import Header from '@/components/Header'
 import { Button } from '@material-tailwind/react'
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { AiFillFolder } from 'react-icons/ai'; // Correct import statement
+import { AiFillFolder } from 'react-icons/ai'; 
 import Image from 'next/image';
+import { SessionProvider, useSession, getSession, signIn, signOut } from "next-auth/react"
 
 export default function Home() {
+  <SessionProvider>
+    const [session] = useSession();
+  </SessionProvider>
+
   return (
     <div> 
       <Head>
@@ -23,9 +28,9 @@ export default function Home() {
 
             <Button
               color='gray'
-              buttonType="outline"
-              iconOnly={true}
-              ripple="dark"
+              // buttonType="outline"
+              // iconOnly={true}
+              // ripple="dark"
               className='border-0 shadow-none rounded-full'
               style={{ backgroundColor: '#F8F9FA' }}
             >
@@ -48,7 +53,7 @@ export default function Home() {
           <div className='flex items-center justify-between px-5'>
             <h2 className='font-medium flex-grow' >My Document</h2>
             <p className='mr-12' >Date Created</p>
-            <AiFillFolder name='folder' className='folder-icon' size={19} /> {/* Use the AiFillFolder icon */}
+            <AiFillFolder name='folder' className='folder-icon' size={19} />
           </div>
         </div>
       </section>
