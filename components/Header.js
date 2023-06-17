@@ -3,12 +3,15 @@ import { Button } from "@material-tailwind/react/components/Button";
 import * as ReactIcons from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faGridRound } from '@fortawesome/free-solid-svg-icons';
+import { MdApps } from 'react-icons/md';
+
 
 export default function Header() {
     
   return (
     <>
-    <div className='sticky top-0 z-50 flex items-center px-4 py-2 shadow-md bg-white'>
+    <header className='sticky top-0 z-50 flex items-center px-4 py-2 shadow-md bg-white'>
       <Button
         color="white"
         buttonType="outline"
@@ -29,7 +32,26 @@ export default function Header() {
           className='flex-grow px-5 text-base bg-transparent outline-none'
          />
       </div>
-    </div>
+
+      <Button
+        color="white"
+        buttonType="outline"
+        rounded={true}
+        iconOnly={true}
+        ripple="dark"
+        className='hidden md:inline-flex ml-5 md:ml-20 h-20 w-20 border-0 rounded-full shadow-none'        
+      >
+        <MdApps className='app-grid-icon' size={35} />
+      </Button>
+
+      <img 
+        loading='lazy'
+        className='hidden md:inline-flex cursor-pointer h-12 w-12 rounded-full ml-2'
+        src='bw-profile.png'
+        alt="oo"
+       />
+
+    </header>
     </>
   );
 }
