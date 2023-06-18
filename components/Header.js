@@ -5,10 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faGridRound } from '@fortawesome/free-solid-svg-icons';
 import { MdApps } from 'react-icons/md';
+import { useSession } from 'next-auth/react';
 
 
 export default function Header() {
     
+  const { data: session } = useSession();
+
   return (
     <>
     <header className='sticky top-0 z-50 flex items-center px-4 py-2 shadow-md bg-white'>
@@ -46,8 +49,9 @@ export default function Header() {
 
       <img 
         loading='lazy'
-        className='hidden md:inline-flex cursor-pointer h-12 w-12 rounded-full ml-2'
-        src='bw-profile.png'
+        className='md:inline-flex cursor-pointer h-12 w-12 rounded-full ml-2'
+        src={session?.user?.image}
+        // src='bw-profile.png'
         alt="oo"
        />
 
