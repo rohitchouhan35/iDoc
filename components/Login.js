@@ -1,13 +1,6 @@
 import React from 'react';
 import { Button } from '@material-tailwind/react';
-import Image from 'next/image';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import Router from 'next/router';
-
-const handleSignIn = () => {
-  console.log('Sign in clicked');
-  Router.push('/index.js'); // Replace '/index' with the actual path to your index.js file
-};
+import { signIn } from 'next-auth/react';
 
 export default function Login() {
   return (
