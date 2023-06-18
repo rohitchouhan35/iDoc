@@ -1,9 +1,12 @@
 import '@/styles/globals.css'
 import { ThemeProvider } from "@material-tailwind/react";
 import Head from 'next/head';
+import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: { session, ...pageProps },
+}) {
   return (<>
+  <SessionProvider session={pageProps.session}>
     <Head>
     <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -18,5 +21,6 @@ export default function App({ Component, pageProps }) {
     />
     </Head>
     <Component {...pageProps} />
+    </SessionProvider>
     </>);
 }

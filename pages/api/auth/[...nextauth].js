@@ -11,7 +11,6 @@ export const authOptions = {
     })
   ],
 
-  adapter: FirebaseAdapter(db),
 }
 
 export default NextAuth(authOptions)

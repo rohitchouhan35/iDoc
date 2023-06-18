@@ -1,28 +1,43 @@
-import Head from 'next/head'
-import Header from '@/components/Header'
-import { Button } from '@material-tailwind/react'
+import React from 'react';
+import Head from 'next/head';
+import Header from '@/components/Header';
+import { Button } from '@material-tailwind/react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { AiFillFolder } from 'react-icons/ai'; 
+import { AiFillFolder } from 'react-icons/ai';
 import Image from 'next/image';
-import { SessionProvider, useSession, getSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn, signOut } from 'next-auth/react';
+import Login from '../components/Login';
 
 export default function Home() {
-  <SessionProvider>
-    const [session] = useSession();
-  </SessionProvider>
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') {
+    return (
+      <div>
+        <div className="flex items-center justify-center min-h-screen">
+          {/* Add your loading animation here */}
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <Login />;
+  }
 
   return (
-    <div> 
+    <div>
       <Head>
         <title>Google Docs</title>
-        <link rel="icon" href="/favicon.ico "/>
+        <link rel="icon" href="/favicon.ico " />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 
       <Header />
 
-      <section className='bg-[#F8F9FA] pb-10 px-10' >
-        <div className='max-w-3xl mx-auto'>
+      <section className="bg-[#F8F9FA] pb-10 px-10">
+      <div className='max-w-3xl mx-auto'>
           <div className='flex items-center justify-between py-6'>
             <h2 className='text-gray-700 text-lg'>Start a new document</h2>
 
@@ -47,9 +62,9 @@ export default function Home() {
           <p className='ml-2 mt-2 font-semibold text-sm text-gray-700' >Blank</p>
         </div>
       </section>
-      
-      <section className='bg-white px-10 md:px-0' >
-        <div className='max-w-3xl mx-auto py-8 text-sm text-gray-700'>
+
+      <section className="bg-white px-10 md:px-0">
+      <div className='max-w-3xl mx-auto py-8 text-sm text-gray-700'>
           <div className='flex items-center justify-between px-5'>
             <h2 className='font-medium flex-grow' >My Document</h2>
             <p className='mr-12' >Date Created</p>
@@ -57,7 +72,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
-  )
+  );
 }
