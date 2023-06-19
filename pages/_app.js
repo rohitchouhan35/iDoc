@@ -1,3 +1,5 @@
+// _app.js file
+
 import '@/styles/globals.css'
 import { ThemeProvider } from "@material-tailwind/react";
 import Head from 'next/head';

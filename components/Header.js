@@ -1,3 +1,4 @@
+// Header.js file
 import React, { useState } from 'react';
 import { Button } from "@material-tailwind/react/components/Button";
 import * as ReactIcons from 'react-icons/fi';
@@ -5,8 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faGridRound } from '@fortawesome/free-solid-svg-icons';
 import { MdApps } from 'react-icons/md';
-import { useSession } from 'next-auth/react';
-
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Header() {
     
@@ -48,6 +48,7 @@ export default function Header() {
       </Button>
 
       <img 
+      onClick={signOut}
         loading='lazy'
         className='md:inline-flex cursor-pointer h-12 w-12 rounded-full ml-2'
         src={session?.user?.image}
