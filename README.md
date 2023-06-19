@@ -1,3 +1,11 @@
+Target:
+1. Purpose: Develop interview app with beta features for collaborative editing and live video meetings.
+2. Collaborative Editing: Simultaneous document editing with real-time updates, cursor tracking, and text highlighting.
+3. Live Video Meetings (Beta): Real-time video/audio communication, screen sharing, and recording.
+4. Sharable Links: Easy invite for candidates via shareable links for editing and video meetings.
+5. User Experience: Intuitive interface using React, Next.js, Firebase, Tailwind CSS, Material-UI.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
