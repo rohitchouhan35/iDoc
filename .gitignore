@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 firebase.js
+rough.txt
 
 # debug
 npm-debug.log*
