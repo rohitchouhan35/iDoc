@@ -1,37 +1,31 @@
 // index.js
 // index.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '@/components/Header';
+import { Spinner } from "@material-tailwind/react";
 import { Fragment } from "react";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
+import { Button, Dialog, DialogHeader, DialogBody, DialogFooter,} from "@material-tailwind/react";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { AiFillFolder } from 'react-icons/ai';
 import Image from 'next/image';
 import { useSession, getSession } from 'next-auth/react';
 import Login from '../components/Login';
-import db from '../firebase'
+import db, { storeUserEmail } from '../firebase';
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const [showModal, setShowModal] = useState(false);
   const[input, setInput] = useState("");
   const [open, setOpen] = useState(false);
-  const userEmail = session?.user?.email;
-  console.log(userEmail);
+  const [emailStored, setEmailStored] = useState(false);
+
+
   if (status === 'loading') {
     return (
       <div>
         <div className="flex items-center justify-center min-h-screen">
-          {/* Add your loading animation here */}
-          <p>Loading...</p>
+          <Spinner className="h-12 w-12" />
         </div>
       </div>
     );
@@ -40,6 +34,8 @@ export default function Home() {
   if (!session) {
     return <Login />;
   } 
+
+  storeUserEmail(session?.user?.email);
 
   const createDocument = () => {
     if(input=='') alert("Enter a name to continue...");
