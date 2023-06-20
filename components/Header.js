@@ -17,12 +17,12 @@ export default function Header() {
     <header className='sticky top-0 z-50 flex items-center px-4 py-2 shadow-md bg-white'>
       <Button
         color="white"
-        // buttonType="outline"
+        variant="outlined"
         // rounded={true}
         // iconOnly={true}
         className='ml-2 md:ml-5 h-20 w-20 border-0 shadow-none rounded-full'        
       >
-         <ReactIcons.FiMenu className='menu-icon' size={30} />
+         <ReactIcons.FiMenu color='gray' className='menu-icon' size={30} />
       </Button>
 
       <img src='googledocs.png'alt="Google Docs Icon" className='description' />
@@ -38,13 +38,13 @@ export default function Header() {
 
       <Button
         color="white"
-        // buttonType="outline"
+        variant="outlined"
         // rounded={true}
         // iconOnly={true}
         // ripple={true}
         className='hidden md:inline-flex ml-5 md:ml-20 h-20 w-20 border-0 rounded-full shadow-none'        
       >
-        <MdApps className='app-grid-icon' size={35} />
+        <MdApps color='gray' className='app-grid-icon' size={35} />
       </Button>
 
       <img 
