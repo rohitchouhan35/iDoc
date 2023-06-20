@@ -14,12 +14,18 @@ import { useSession, getSession } from 'next-auth/react';
 import Login from '../components/Login';
 import db, { storeUserEmail } from '../firebase';
 import firebase from "firebase/compat/app";
+import {
+  useCollectionOnce,
+} from 'react-firebase-hooks/firestore'
+import DocumentRow from '@/components/DocumentRow';
 
 export default function Home() {
   const { data: session, status } = useSession();
   const[input, setInput] = useState("");
   const [open, setOpen] = useState(false);
-  const [emailStored, setEmailStored] = useState(false);
+  const [snapshot] = useCollectionOnce(
+    db.collection('userDocs').doc(session?.user?.email).collection('docs').orderBy('timestamp', 'desc')
+  );
 
 
   if (status === 'loading') {
@@ -43,7 +49,8 @@ export default function Home() {
     
     db.collection('userDocs').doc(session?.user?.email).collection('docs').add({
       filename: input,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      userImage: session?.user?.image
     });
 
     setInput('');
@@ -131,6 +138,16 @@ export default function Home() {
             <p className='mr-12' >Date Created</p>
             <AiFillFolder name='folder' className='folder-icon' size={19} />
           </div>
+
+        {snapshot?.docs.map(doc => (
+          <DocumentRow 
+            key={doc.id}
+            id={doc.id}
+            filename={doc.data().filename}
+            date={doc.data().timestamp}
+          />
+        ))}
+
         </div>
       </section>
     </div>
