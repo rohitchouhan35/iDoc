@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useSession, getSession } from 'next-auth/react';
 import Login from '../components/Login';
 import db, { storeUserEmail } from '../firebase';
+import firebase from "firebase/compat/app";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -38,11 +39,15 @@ export default function Home() {
   storeUserEmail(session?.user?.email);
 
   const createDocument = () => {
-    if(input=='') alert("Enter a name to continue...");
-    else {
-      alert('document created');
-    }
+    if(!input) return;
+    
+    db.collection('userDocs').doc(session?.user?.email).collection('docs').add({
+      filename: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
     setInput('');
+    setOpen(false);
   };
  
   const handleOpen = () => {
