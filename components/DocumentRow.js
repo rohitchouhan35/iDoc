@@ -9,7 +9,8 @@ export default function DocumentRow({ id, filename, date }) {
   const router = useRouter();  
   return (
     <div 
-    onClick={() => router.push(`/doc/${id}`)}
+    // onClick={() => router.push(`/doc/${id}`)}
+    onClick={() => router.push(`/doc/test`)}
     className='flex items-center p-4 rounded-lg hover:bg-gray-100 text-gray-700 text-sm cursor-pointer'>
       <BsFileEarmarkTextFill name="article" size={24} color="#4285F4" />
       <p className="flex-grow pl-5 w-10 pr-10 truncate">{filename}</p>
@@ -21,6 +22,7 @@ export default function DocumentRow({ id, filename, date }) {
         variant="outlined"
         rounded={true}
         iconOnly={true}
+        ripple={true}
         className='border-0 rounded-full '
       >
         <SlOptionsVertical strokeWidth={7} name="more_vert" size={15} color='gray' />

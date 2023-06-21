@@ -27,7 +27,7 @@ export default function Header() {
 
       <img src='googledocs.png'alt="Google Docs Icon" className='description' />
 
-      <h2 className='flex text-gray-700 text-2xl'>Docs</h2>
+      <h2 className='flex text-gray-700 text-2xl'>iDoc</h2>
 
       <div className='mx-5 md:mx-20 flex flex-grow items-center px-5 py-2 bg-gray-100 text-gray-600 rounded-lg focus-within:text-gray-600 focus-within:shadow-md ' >
         <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />

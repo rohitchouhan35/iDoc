@@ -93,7 +93,6 @@ export default function Home() {
 
   return (
     <div>
-    {/* {userEmail && <UpdateUserEmail email={userEmail} />} */}
       <Head>
         <title>iDoc</title>
         <link rel="icon" href="/favicon.ico " />
@@ -147,6 +146,8 @@ export default function Home() {
             date={doc.data().timestamp}
           />
         ))}
+
+        <DocumentRow />
 
         </div>
       </section>
