@@ -7,6 +7,7 @@ import { useDocumentOnce, useCollectionOnce } from "react-firebase-hooks/firesto
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Login from "@/components/Login";
 import { Spinner } from "@material-tailwind/react";
+import TextEditor from "@/components/TextEditor";
 
 
 export default function Doc() {
@@ -34,14 +35,14 @@ export default function Doc() {
             <p className="option">File</p>
             <p className="option">Edit</p>
             <p className="option">View</p>
-            <p className="option">Inser</p>
+            <p className="option">Insert</p>
             <p className="option">Format</p>
             <p className="option">Tools</p>
           </div>
         </div>
 
         <Button 
-          className=" h-10">
+          className="hidden md:inline-flex h-10 w-50">
           <div className="mr-3 mb-1">
           <BsFillShareFill name="people" size={20} color="white" />
           </div>
@@ -50,9 +51,24 @@ export default function Doc() {
           </div>
         </Button>
 
-        
+        <img
+            className="cursor-pointer rounded-full h-10 w-10 ml-2"
+            src={session?.user?.image}
+            alt=""
+        />
 
-      </header>
+      </header> 
+
+      <TextEditor />
     </div>
   ); 
+}
+
+export async function getServerSideProps(context) {
+  const session = getSession(context);
+  return {
+    props: {
+      session
+    }
+  }
 }
