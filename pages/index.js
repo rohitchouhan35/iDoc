@@ -146,9 +146,7 @@ export default function Home() {
             date={doc.data().timestamp}
           />
         ))}
-
-        <DocumentRow />
-
+        
         </div>
       </section>
     </div>
@@ -157,7 +155,6 @@ export default function Home() {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-
   return {
     props: {
       session
