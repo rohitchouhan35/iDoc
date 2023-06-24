@@ -60,6 +60,11 @@ export default function Home() {
   const handleOpen = () => {
     setOpen(!open)
   };
+
+  const para = {
+    x:open
+  }
+
     const modal = (
       <Fragment>
       <Dialog size='xs'  open={open} handler={handleOpen}>
@@ -123,7 +128,8 @@ export default function Home() {
               src='https://links.papareact.com/pju'
               height={1000}
               width={1000}
-              // priority={false}
+              alt=""
+              priority={false}
             />
           </div>
           <p className='ml-2 mt-2 font-semibold text-sm text-gray-700' >Blank</p>
