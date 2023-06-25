@@ -16,7 +16,7 @@ export default function Doc() {
   const { id } = router.query;
 
   const [snapshot, loadingSnapshot] = useDocumentOnce(
-    db.collection("userDocs").doc(session?.user?.email).collection("docs").doc(id)
+    db.collection("files").doc(id)
   );
 
   if(!loadingSnapshot && !snapshot?.data()?.filename) 

@@ -24,7 +24,7 @@ export default function Home() {
   const[input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const [snapshot] = useCollectionOnce(
-    db.collection('userDocs').doc(session?.user?.email).collection('docs').orderBy('timestamp', 'desc')
+    db.collection('userList').doc(id).orderBy('timestamp', 'desc')
   );
 
 
@@ -44,14 +44,19 @@ export default function Home() {
 
   storeUserEmail(session?.user?.email);
 
-  const createDocument = () => {
+  const createDocument = async () => {
     if(!input) return;
     
-    db.collection('userDocs').doc(session?.user?.email).collection('docs').add({
+    const fileRef = await db.collection('files').add({
       filename: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      userImage: session?.user?.image
+      creator: session?.user?.email
     });
+
+    const userDocRef = db.collection('userList').doc(session.user.email).collection('docs').doc(fileRef.id);
+
+    // Create reference to the new file document in the user's collection
+    await userDocRef.set({ fileRef: fileRef });
 
     setInput('');
     setOpen(false);

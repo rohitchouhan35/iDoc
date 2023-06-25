@@ -21,7 +21,7 @@ export default function TextEditor() {
     const { id } = router.query;
 
     const [snapshot] = useDocumentOnce(
-        db.collection('userDocs').doc(session?.user?.email).collection('docs').doc(id)
+        db.collection('files').doc(id)
     );
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function TextEditor() {
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState);
 
-        db.collection('userDocs').doc(session.user.email).collection('docs').doc(id).set({
+        db.collection('files').doc(id).set({
             editorState: convertToRaw(editorState.getCurrentContent())
         }, {
             merge: true
